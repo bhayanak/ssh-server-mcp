@@ -1,0 +1,8 @@
+{
+  "stdout": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/sda1       50G   32G   16G  67% /\ntmpfs           7.8G  1.2M  7.8G   1% /dev/shm\n",
+  "stderr": "",
+  "exitCode": 0,
+  "signal": null,
+  "durationMs": 42,
+  "truncated": false
+}

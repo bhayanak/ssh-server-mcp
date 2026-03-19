@@ -1,0 +1,35 @@
+{
+  "name": "ssh-mcp-server-root",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SSH MCP Server — AI-powered SSH/SFTP remote operations",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ssh-mcp/ssh-mcp-server.git"
+  },
+  "scripts": {
+    "build": "pnpm --filter './packages/*' run build",
+    "test": "pnpm --filter './packages/ssh-server' run test",
+    "test:coverage": "pnpm --filter './packages/ssh-server' run test:coverage",
+    "lint": "pnpm --filter './packages/*' run lint",
+    "lint:fix": "pnpm --filter './packages/*' run lint:fix",
+    "typecheck": "pnpm --filter './packages/*' run typecheck",
+    "format": "pnpm --filter './packages/*' run format",
+    "format:fix": "pnpm --filter './packages/*' run format:fix",
+    "validate": "pnpm --filter './packages/*' run validate",
+    "ci": "pnpm --filter './packages/*' run ci",
+    "sbom": "trivy fs --severity CRITICAL,HIGH --scanners vuln .",
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major",
+    "prerelease": "pnpm -r run ci && pnpm -r run build",
+    "postrelease": "node -e \"const v=require('./package.json').version; const {execSync}=require('child_process'); execSync('npm version '+v+' --no-git-tag-version', {cwd:'packages/ssh-server'}); execSync('npm version '+v+' --no-git-tag-version', {cwd:'packages/ssh-vscode-extension'}); execSync('git add packages/ssh-server/package.json packages/ssh-vscode-extension/package.json'); execSync('git commit --amend --no-edit'); execSync('git tag -f v'+v);\""
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "standard-version": "^9.5.0"
+  },
+  "keywords": ["mcp", "ssh", "sftp", "remote", "terminal", "ai", "copilot"],
+  "license": "MIT"
+}

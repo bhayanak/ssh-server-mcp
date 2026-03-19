@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.vsix
+.DS_Store
+coverage/
+.env
+.env.local
+*.log
+.vscode/
+*.md
+!README.md
+.idea/

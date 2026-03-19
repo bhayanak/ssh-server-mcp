@@ -1,0 +1,110 @@
+{
+  "name": "ssh-mcp-vscode",
+  "displayName": "Simple SSH MCP Server",
+  "description": "VS Code extension providing SSH MCP server integration via Copilot",
+  "version": "0.1.0",
+  "publisher": "bhayanak",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bhayanak/ssh-server-mcp.git",
+    "directory": "packages/ssh-vscode-extension"
+  },
+  "engines": {
+    "vscode": "^1.99.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "mcpServerDefinitionProviders": [
+      {
+        "id": "ssh-mcp"
+      }
+    ],
+    "commands": [
+      {
+        "command": "sshMcp.restartServer",
+        "title": "SSH MCP: Restart Server"
+      },
+      {
+        "command": "sshMcp.openLogDirectory",
+        "title": "SSH MCP: Open Log Directory"
+      }
+    ],
+    "configuration": {
+      "title": "Simple SSH MCP Server",
+      "properties": {
+        "sshMcp.maxConnections": {
+          "type": "number",
+          "default": 10,
+          "description": "Maximum concurrent SSH sessions"
+        },
+        "sshMcp.defaultTerm": {
+          "type": "string",
+          "default": "xterm-256color",
+          "description": "Default TERM variable for PTY shells"
+        },
+        "sshMcp.defaultCols": {
+          "type": "number",
+          "default": 220,
+          "description": "Default PTY width in columns"
+        },
+        "sshMcp.defaultRows": {
+          "type": "number",
+          "default": 50,
+          "description": "Default PTY height in rows"
+        },
+        "sshMcp.execTimeoutMs": {
+          "type": "number",
+          "default": 30000,
+          "description": "Default command execution timeout (ms)"
+        },
+        "sshMcp.logDir": {
+          "type": "string",
+          "default": "",
+          "description": "NDJSON log file directory (defaults to ~/.ssh-mcp/logs)"
+        },
+        "sshMcp.hostKeyMode": {
+          "type": "string",
+          "enum": [
+            "accept",
+            "strict",
+            "ask"
+          ],
+          "default": "accept",
+          "description": "Host key verification mode"
+        },
+        "sshMcp.env": {
+          "type": "string",
+          "enum": [
+            "development",
+            "production"
+          ],
+          "default": "development",
+          "description": "Server environment. 'production' defaults host key mode to 'strict'."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node build.cjs",
+    "watch": "node build.cjs --watch",
+    "typecheck": "tsc --noEmit",
+    "package": "npx @vscode/vsce package --no-dependencies --allow-missing-repository --skip-license",
+    "lint": "echo 'no lint configured'",
+    "format": "echo 'no format configured'",
+    "ci": "tsc --noEmit",
+    "validate": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.37",
+    "@types/vscode": "^1.99.0",
+    "esbuild": "^0.25.0",
+    "typescript": "~5.8.0"
+  }
+}

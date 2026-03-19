@@ -1,0 +1,29 @@
+[
+  {
+    "name": "nginx",
+    "type": "directory",
+    "size": 4096,
+    "permissions": "rwxr-xr-x",
+    "owner": "root",
+    "group": "root",
+    "modified": "2026-03-15T10:00:00Z"
+  },
+  {
+    "name": "syslog",
+    "type": "file",
+    "size": 15234,
+    "permissions": "rw-r--r--",
+    "owner": "root",
+    "group": "root",
+    "modified": "2026-03-18T08:30:00Z"
+  },
+  {
+    "name": "auth.log",
+    "type": "file",
+    "size": 8901,
+    "permissions": "rw-r--r--",
+    "owner": "root",
+    "group": "root",
+    "modified": "2026-03-18T08:30:00Z"
+  }
+]

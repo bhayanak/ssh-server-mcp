@@ -1,0 +1,12 @@
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "host": "10.0.1.50",
+  "port": 22,
+  "username": "deploy",
+  "label": "prod-web-1",
+  "createdAt": "2026-03-18T06:00:00Z",
+  "lastActivity": "2026-03-18T08:12:00Z",
+  "authMethod": "publickey",
+  "shellCount": 2,
+  "jobCount": 1
+}
