@@ -1,6 +1,6 @@
 # SSH MCP Server
 
-[![CI](https://github.com/ssh-mcp/ssh-mcp-server/actions/workflows/ci.yml/badge.svg)](https://github.com/ssh-mcp/ssh-mcp-server/actions/workflows/ci.yml)
+[![CI](https://github.com/bhayanak/ssh-server-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/bhayanak/ssh-server-mcp/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/ssh-mcp-server)](https://www.npmjs.com/package/ssh-mcp-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ssh-mcp/ssh-mcp-server/blob/main/LICENSE)
 
