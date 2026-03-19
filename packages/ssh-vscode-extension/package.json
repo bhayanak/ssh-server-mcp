@@ -13,8 +13,10 @@
   "engines": {
     "vscode": "^1.99.0"
   },
+  "icon": "logo.png",
   "categories": [
-    "Other"
+    "AI",
+    "Chat"
   ],
   "activationEvents": [
     "onStartupFinished"

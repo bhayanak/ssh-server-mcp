@@ -32,7 +32,7 @@ Works with Claude Desktop, VS Code + GitHub Copilot, and any MCP-compatible clie
 ### Standalone (npm)
 
 ```bash
-npm install -g ssh-mcp-server
+npm install -g simple-ssh-mcp-server
 ```
 
 ### Claude Desktop
@@ -86,35 +86,6 @@ All settings via environment variables:
 | `SSH_MCP_ENV` | `development` | `production` defaults to `strict` host keys |
 
 See [server README](packages/ssh-server/README.md) for the full configuration reference.
-
-## Development
-
-```bash
-# Install
-pnpm install
-
-# Build all
-pnpm run build
-
-# Test
-pnpm run test
-
-# Lint + typecheck + test + format
-pnpm run ci
-
-# Package VS Code extension
-pnpm --filter ssh-mcp-vscode run package
-```
-
-See [deploy-test.md](deploy-test.md) for the complete command reference.
-
-## Project Structure
-
-```
-packages/
-  ssh-server/          # MCP server (TypeScript, ESM)
-  ssh-vscode-extension/  # VS Code extension (esbuild, CJS)
-```
 
 ## Security
 

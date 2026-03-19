@@ -1,10 +1,10 @@
 # SSH MCP Server
 
-[![CI](https://github.com/ssh-mcp/ssh-mcp-server/actions/workflows/ci.yml/badge.svg)](https://github.com/ssh-mcp/ssh-mcp-server/actions/workflows/ci.yml)
+[![CI](https://github.com/ssh-mcp/ssh-mcp-server/actions/workflows/ci.yml/badge.svg)](https://github.com/bhayanak/ssh-server-mcp/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/ssh-mcp-server)](https://www.npmjs.com/package/ssh-mcp-server)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ssh-mcp/ssh-mcp-server/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/bhayanak/ssh-server-mcp/blob/main/LICENSE)
 
-An MCP (Model Context Protocol) server that gives AI assistants full SSH/SFTP remote operations capabilities — session management, command execution, interactive shells, file transfers, port forwarding, and system diagnostics.
+An MCP (Model Context Protocol) server [Simple SSH MCP Server](https://www.npmjs.com/package/simple-ssh-mcp-server) that gives AI assistants full SSH/SFTP remote operations capabilities — session management, command execution, interactive shells, file transfers, port forwarding, and system diagnostics.
 
 ## Features
 
@@ -21,13 +21,13 @@ An MCP (Model Context Protocol) server that gives AI assistants full SSH/SFTP re
 ## Installation
 
 ```bash
-npm install -g ssh-mcp-server
+npm install -g simple-ssh-mcp-server
 ```
 
 Or use directly with npx:
 
 ```bash
-npx ssh-mcp-server
+npx simple-ssh-mcp-server
 ```
 
 ## Quick Start
@@ -41,7 +41,7 @@ Add to `claude_desktop_config.json`:
   "mcpServers": {
     "ssh": {
       "command": "npx",
-      "args": ["ssh-mcp-server"],
+      "args": ["simple-ssh-mcp-server"],
       "env": {
         "SSH_MCP_MAX_CONNECTIONS": "10",
         "SSH_MCP_HOST_KEY_MODE": "accept"
@@ -53,7 +53,7 @@ Add to `claude_desktop_config.json`:
 
 ### With VS Code
 
-Install the [SSH MCP VS Code extension](https://marketplace.visualstudio.com/search?term=ssh%20mcp%20server&target=VSCode&category=All%20categories&sortBy=Relevance) for automatic integration with GitHub Copilot.
+Install the [Simple SSH MCP VS Code extension](https://marketplace.visualstudio.com/search?term=Simple%20SSH%20MCP%20Server&target=VSCode&category=AI&sortBy=Relevance) for automatic integration with GitHub Copilot.
 Install the one by `fazorboy` .
 
 ## Tools (29)

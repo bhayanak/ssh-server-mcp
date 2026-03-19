@@ -1,5 +1,5 @@
 {
-  "name": "ssh-mcp-server",
+  "name": "simple-ssh-mcp-server",
   "version": "0.1.0",
   "description": "MCP server for SSH/SFTP remote operations",
   "type": "module",
@@ -48,7 +48,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ssh-mcp/ssh-mcp-server.git",
+    "url": "https://github.com/bhayanak/ssh-server-mcp.git",
     "directory": "packages/ssh-server"
   },
   "keywords": [
