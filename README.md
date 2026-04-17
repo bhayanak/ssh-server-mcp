@@ -1,4 +1,9 @@
-# SSH MCP Server
+# 
+<p align="center">
+  <img src="packages/ssh-vscode-extension/logo.png" alt="SSH MCP Server" width="180" height="180"/>
+</p>
+
+<h1 align="center">SSH MCP Server</h1>
 
 [![CI](https://github.com/bhayanak/ssh-server-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/bhayanak/ssh-server-mcp/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/ssh-mcp-server)](https://www.npmjs.com/package/ssh-mcp-server)
