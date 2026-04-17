@@ -9,4 +9,5 @@ coverage/
 .vscode/
 *.md
 !README.md
+!CHANGELOG.md
 .idea/
