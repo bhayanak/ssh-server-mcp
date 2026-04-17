@@ -2,7 +2,7 @@
   "name": "ssh-mcp-vscode",
   "displayName": "Simple SSH MCP Server",
   "description": "VS Code extension providing SSH MCP server integration via Copilot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "bhayanak",
   "license": "MIT",
   "repository": {
