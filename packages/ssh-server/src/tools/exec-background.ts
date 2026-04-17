@@ -13,7 +13,7 @@ export function registerExecBackgroundTools(
 ) {
   server.tool(
     'ssh_exec_background',
-    'Start a long-running command in the background. Returns a jobId immediately for polling.',
+    'Start a long-running command in the background for async polling. Returns a jobId. Only use when user explicitly wants background/async execution.',
     {
       sessionId: z.string().describe('Active session ID'),
       command: z.string().describe('Command to run in the background'),
@@ -58,7 +58,7 @@ export function registerExecBackgroundTools(
 
   server.tool(
     'ssh_exec_poll',
-    'Read output of a background job. Returns stdout/stderr since last poll, status, and exit code if done.',
+    'Fetch output from a background job previously started with ssh_exec_background. Requires jobId.',
     {
       sessionId: z.string().describe('Active session ID'),
       jobId: z.string().describe('Background job ID'),
@@ -103,7 +103,7 @@ export function registerExecBackgroundTools(
 
   server.tool(
     'ssh_exec_poll_list',
-    'List all background jobs for a session with their current status',
+    'List all active background jobs and their status for a specific session.',
     {
       sessionId: z.string().describe('Active session ID'),
     },
@@ -145,7 +145,7 @@ export function registerExecBackgroundTools(
 
   server.tool(
     'ssh_exec_cancel',
-    'Cancel a running background job by sending SIGTERM',
+    'Stop/kill a background job previously started with ssh_exec_background. Requires a valid jobId — do NOT use for anything else.',
     {
       sessionId: z.string().describe('Active session ID'),
       jobId: z.string().describe('Background job ID to cancel'),

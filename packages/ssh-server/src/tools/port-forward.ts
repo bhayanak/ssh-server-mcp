@@ -12,7 +12,7 @@ export function registerPortForwardTools(
 ) {
   server.tool(
     'ssh_port_forward_local',
-    'Create a local port forward (SSH -L). Binds a local port and tunnels traffic to a remote host:port through the SSH connection.',
+    'Create SSH tunnel: forward a local port to a remote host:port through the SSH connection (SSH -L).',
     {
       sessionId: z.string().describe('Active session ID'),
       localPort: z.number().int().min(1).max(65535).describe('Local port to bind'),
@@ -66,7 +66,7 @@ export function registerPortForwardTools(
 
   server.tool(
     'ssh_port_forward_remote',
-    'Create a remote port forward (SSH -R). Binds a port on the remote host and tunnels traffic back to a local host:port.',
+    'Create reverse SSH tunnel: forward a remote port back to a local host:port (SSH -R).',
     {
       sessionId: z.string().describe('Active session ID'),
       remotePort: z.number().int().min(1).max(65535).describe('Remote port to bind'),
@@ -120,7 +120,7 @@ export function registerPortForwardTools(
 
   server.tool(
     'ssh_port_forward_list',
-    'List all active port forwards across all sessions or for a specific session',
+    'List all active SSH port forwards and tunnels.',
     {
       sessionId: z.string().optional().describe('Filter by session ID (omit for all)'),
     },
@@ -168,7 +168,7 @@ export function registerPortForwardTools(
 
   server.tool(
     'ssh_port_forward_remove',
-    'Remove (close) an active port forward by its ID',
+    'Close an active SSH port forward by its forwardId.',
     {
       forwardId: z.string().describe('Port forward ID to remove'),
     },

@@ -14,6 +14,11 @@ import { registerSftpTools } from './tools/sftp.js';
 import { registerPortForwardTools } from './tools/port-forward.js';
 import { registerSystemInfoTools } from './tools/system-info.js';
 import { registerLogTools } from './tools/logs.js';
+import { registerFileSearchTools } from './tools/file-search.js';
+import { registerServerMgmtTools } from './tools/server-mgmt.js';
+import { registerMultiHostTools } from './tools/multi-host.js';
+import { registerSessionIntelTools } from './tools/session-intel.js';
+import { registerContainerTools } from './tools/container.js';
 
 export interface SSHMcpServer {
   mcpServer: McpServer;
@@ -73,6 +78,11 @@ export function createServer(config: ServerConfig): SSHMcpServer {
   registerPortForwardTools(mcpServer, sessionManager, portForwardManager, logger);
   registerSystemInfoTools(mcpServer, sessionManager, logger);
   registerLogTools(mcpServer, logger);
+  registerFileSearchTools(mcpServer, sessionManager, logger);
+  registerServerMgmtTools(mcpServer, sessionManager, logger);
+  registerMultiHostTools(mcpServer, sessionManager, logger, config);
+  registerSessionIntelTools(mcpServer, sessionManager, logger);
+  registerContainerTools(mcpServer, sessionManager, logger);
 
   // Cleanup function for graceful shutdown
   async function cleanup(): Promise<void> {

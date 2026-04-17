@@ -179,3 +179,25 @@ export interface KeepaliveConfig {
 }
 
 export type SFTPWrapperType = SFTPWrapper;
+
+// --- Phase 12: Snapshot types ---
+
+export interface SystemSnapshot {
+  id: string;
+  sessionId: string;
+  label?: string;
+  createdAt: Date;
+  sections: Record<string, string>;
+}
+
+// --- Phase 12: Bookmark types ---
+
+export interface ConnectionBookmark {
+  name: string;
+  host: string;
+  port: number;
+  username: string;
+  privateKeyPath?: string;
+  label?: string;
+  createdAt: Date;
+}

@@ -23,7 +23,7 @@ export function registerSystemInfoTools(
 ) {
   server.tool(
     'ssh_system_info',
-    'Gather system information from the remote host. Returns OS, uptime, memory, disk, CPU, network, and other details.',
+    'Get remote server system information: OS, CPU, memory, disk, network interfaces, and uptime.',
     {
       sessionId: z.string().describe('Active session ID'),
       categories: z

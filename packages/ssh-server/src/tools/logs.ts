@@ -6,7 +6,7 @@ import { parseRelativeTime } from '../utils/formatter.js';
 export function registerLogTools(server: McpServer, logger: EventLogger) {
   server.tool(
     'ssh_get_logs',
-    'Query audit logs from the SSH MCP server. Filter by event type, session, host, or time range.',
+    'Query the SSH MCP server internal audit logs. Filter by event type, session, host, or time range.',
     {
       kind: z
         .string()

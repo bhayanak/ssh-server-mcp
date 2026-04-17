@@ -15,7 +15,7 @@ export function registerSftpTools(
 ) {
   server.tool(
     'ssh_sftp_list',
-    'List the contents of a remote directory with file details (permissions, size, dates)',
+    'List directory contents on the remote server (like ls -la). Shows names, sizes, permissions.',
     {
       sessionId: z.string().describe('Active session ID'),
       remotePath: z.string().describe('Remote directory path to list'),
@@ -55,7 +55,7 @@ export function registerSftpTools(
 
   server.tool(
     'ssh_sftp_upload',
-    'Upload a local file to the remote host via SFTP. Validates file size limits.',
+    'Upload a local file to the remote server via SFTP. Validates file size limits.',
     {
       sessionId: z.string().describe('Active session ID'),
       localPath: z.string().describe('Path to file on local machine'),
@@ -103,7 +103,7 @@ export function registerSftpTools(
 
   server.tool(
     'ssh_sftp_download',
-    'Download a remote file to the local machine via SFTP',
+    'Download a file from the remote server to the local machine via SFTP.',
     {
       sessionId: z.string().describe('Active session ID'),
       remotePath: z.string().describe('Path to file on remote host'),
@@ -151,7 +151,7 @@ export function registerSftpTools(
 
   server.tool(
     'ssh_sftp_read',
-    "Read a remote file's text content without downloading. Useful for config files, logs, etc.",
+    'Read a remote file text content in-place without downloading. Good for configs and logs.',
     {
       sessionId: z.string().describe('Active session ID'),
       remotePath: z.string().describe('Path to file on remote host'),
@@ -196,7 +196,7 @@ export function registerSftpTools(
 
   server.tool(
     'ssh_sftp_write',
-    'Write text content to a remote file. Useful for config files, scripts, patches.',
+    'Create or overwrite a remote file with text content. Good for configs and scripts.',
     {
       sessionId: z.string().describe('Active session ID'),
       remotePath: z.string().describe('Path to file on remote host'),
@@ -244,7 +244,7 @@ export function registerSftpTools(
 
   server.tool(
     'ssh_sftp_delete',
-    'Delete a remote file or directory. Recursive delete requires explicit opt-in.',
+    'Delete a file or directory on the remote server. Recursive delete requires explicit opt-in.',
     {
       sessionId: z.string().describe('Active session ID'),
       remotePath: z.string().describe('Path to file or directory on remote host'),
@@ -284,7 +284,7 @@ export function registerSftpTools(
 
   server.tool(
     'ssh_sftp_stat',
-    'Get detailed metadata about a remote file or directory (size, permissions, ownership, timestamps)',
+    'Get file metadata: size, permissions, owner, timestamps of a remote file or directory.',
     {
       sessionId: z.string().describe('Active session ID'),
       remotePath: z.string().describe('Path to file or directory'),

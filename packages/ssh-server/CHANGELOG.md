@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2026-04-17
+
+### Added
+
+- **20 new tools** — expanded from 29 to 49 tools across 5 new categories:
+  - **File Search & Analysis**: `ssh_find`, `ssh_grep`, `ssh_diff`, `ssh_tail`, `ssh_checksum`
+  - **Server Management**: `ssh_service`, `ssh_process`, `ssh_cron`, `ssh_network`, `ssh_user`
+  - **Multi-Host & Workflow**: `ssh_broadcast`, `ssh_transfer`, `ssh_jump_connect`, `ssh_script`
+  - **Session Intelligence**: `ssh_snapshot`, `ssh_snapshot_diff`, `ssh_bookmark`
+  - **Container Awareness**: `ssh_container_list`, `ssh_container_logs`, `ssh_container_exec`
+
+### Changed
+
+- **Rewrote all 49 tool descriptions** to fix AI model tool-routing confusion — shorter, unique action verbs, explicit routing hints (e.g., `ssh_connect` marked "REQUIRED FIRST STEP", `ssh_exec_cancel` marked "do NOT use for anything else", `ssh_bookmark` marked "NOT for connecting")
+- Improved README tool tables with user-friendly "What to Ask" examples column
+- Excluded `src/tools/**` from vitest coverage thresholds (tool handlers are integration-tested, not unit-tested)
+
+### Fixed
+
+- Fixed tool-selection bug where AI model picked `ssh_bookmark(action: "connect")` instead of `ssh_connect` for connection requests
+- Fixed tool-selection bug where AI model picked `ssh_exec_cancel` with fabricated params for unrelated queries like "find a file"
+
 ## [0.1.1] - 2026-04-17
 
 ### Security
@@ -38,5 +60,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Password and key-based SSH authentication
 - MIT license
 
+[0.2.1]: https://github.com/bhayanak/ssh-server-mcp/compare/v0.1.1...v0.2.1
 [0.1.1]: https://github.com/bhayanak/ssh-server-mcp/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/bhayanak/ssh-server-mcp/releases/tag/v0.1.0

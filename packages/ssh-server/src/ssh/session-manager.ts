@@ -231,4 +231,16 @@ export class SessionManager {
   get maxSessions(): number {
     return this.maxConnections;
   }
+
+  /**
+   * Register an externally-created session (e.g. from a jump/proxy connection).
+   */
+  addSession(session: SSHSession): void {
+    if (this.sessions.size >= this.maxConnections) {
+      throw new Error(
+        `Maximum connections reached (${this.maxConnections}). Disconnect a session first.`,
+      );
+    }
+    this.sessions.set(session.id, session);
+  }
 }

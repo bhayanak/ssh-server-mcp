@@ -13,7 +13,7 @@ export function registerExecTools(
 ) {
   server.tool(
     'ssh_exec',
-    'Execute a command on the remote host and wait for it to complete. Returns stdout, stderr, and exit code.',
+    'Run a command on a connected remote server and return stdout, stderr, and exit code. Requires a sessionId from ssh_connect.',
     {
       sessionId: z.string().describe('Active session ID'),
       command: z.string().describe('Command to execute on the remote host'),
@@ -121,7 +121,7 @@ export function registerExecTools(
 
   server.tool(
     'ssh_sudo_exec',
-    'Execute a command with sudo privileges. Password is injected via stdin and never logged.',
+    'Run a command with sudo privileges on the remote server. Password sent via stdin, never logged.',
     {
       sessionId: z.string().describe('Active session ID'),
       command: z.string().describe('Command to execute with sudo privileges'),

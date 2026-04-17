@@ -17,7 +17,7 @@ export function registerSessionTools(
 ) {
   server.tool(
     'ssh_connect',
-    'Establish an SSH connection to a remote host using password or key-based authentication',
+    'REQUIRED FIRST STEP: Connect to a remote server via SSH using host, username, and password or key. Must be called before any other ssh_ tool.',
     {
       host: z.string().describe('Hostname or IP address of the remote server'),
       port: z.number().optional().default(22).describe('SSH port number'),
@@ -94,7 +94,7 @@ export function registerSessionTools(
 
   server.tool(
     'ssh_disconnect',
-    'Close an active SSH session and clean up all associated resources',
+    'Close and disconnect an active SSH session by its sessionId.',
     {
       sessionId: z.string().describe('Session ID to disconnect'),
     },
@@ -127,7 +127,7 @@ export function registerSessionTools(
 
   server.tool(
     'ssh_list_sessions',
-    'List all active SSH sessions with connection details and resource usage',
+    'Show all active SSH connections with their host, user, and resource details.',
     {},
     async () => {
       const sessions = sessionManager.list();
@@ -157,7 +157,7 @@ export function registerSessionTools(
 
   server.tool(
     'ssh_session_ping',
-    'Health-check an SSH session to verify it is still alive and measure latency',
+    'Test if an SSH session is alive and measure its round-trip latency.',
     {
       sessionId: z.string().describe('Session ID to ping'),
     },

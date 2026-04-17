@@ -14,7 +14,7 @@ export function registerShellTools(
 ) {
   server.tool(
     'ssh_shell_open',
-    'Open an interactive PTY shell on the remote host. Returns a shellId for read/write operations.',
+    'Open an interactive PTY terminal for programs like mysql, python, or top. For simple one-off commands use ssh_exec instead.',
     {
       sessionId: z.string().describe('Active session ID'),
       term: z.string().optional().describe('Terminal type (default: xterm-256color)'),
@@ -64,7 +64,7 @@ export function registerShellTools(
 
   server.tool(
     'ssh_shell_write',
-    'Write data to an open shell stdin. Include \\n for Enter key.',
+    'Type text into an open interactive PTY terminal. Requires shellId from ssh_shell_open.',
     {
       sessionId: z.string().describe('Active session ID'),
       shellId: z.string().describe('Shell channel ID'),
@@ -95,7 +95,7 @@ export function registerShellTools(
 
   server.tool(
     'ssh_shell_read',
-    'Read buffered output from an open shell. Waits up to timeoutMs for data if buffer is empty.',
+    'Read output from an open interactive PTY terminal. Requires shellId from ssh_shell_open.',
     {
       sessionId: z.string().describe('Active session ID'),
       shellId: z.string().describe('Shell channel ID'),
@@ -131,7 +131,7 @@ export function registerShellTools(
 
   server.tool(
     'ssh_shell_resize',
-    'Resize the PTY terminal window dimensions',
+    'Change dimensions of an open PTY terminal window. Requires shellId from ssh_shell_open.',
     {
       sessionId: z.string().describe('Active session ID'),
       shellId: z.string().describe('Shell channel ID'),
@@ -163,7 +163,7 @@ export function registerShellTools(
 
   server.tool(
     'ssh_shell_close',
-    'Close an open shell channel and free resources',
+    'Close an interactive PTY terminal. Requires shellId from ssh_shell_open.',
     {
       sessionId: z.string().describe('Active session ID'),
       shellId: z.string().describe('Shell channel ID to close'),
@@ -195,7 +195,7 @@ export function registerShellTools(
 
   server.tool(
     'ssh_shell_list',
-    'List all open shell channels for a session',
+    'List open PTY terminals for a specific session.',
     {
       sessionId: z.string().describe('Active session ID'),
     },
