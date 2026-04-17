@@ -23,7 +23,7 @@
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
     "prerelease": "pnpm -r run ci && pnpm -r run build",
-    "postrelease": "node -e \"const v=require('./package.json').version; const {execSync}=require('child_process'); execSync('npm version '+v+' --no-git-tag-version', {cwd:'packages/ssh-server'}); execSync('npm version '+v+' --no-git-tag-version', {cwd:'packages/ssh-vscode-extension'}); execSync('git add packages/ssh-server/package.json packages/ssh-vscode-extension/package.json'); execSync('git commit --amend --no-edit'); execSync('git tag -f v'+v);\""
+    "postrelease": "node -e \"const v=require('./package.json').version; const {execSync}=require('child_process'); const {copyFileSync}=require('fs'); copyFileSync('CHANGELOG.md','packages/ssh-server/CHANGELOG.md'); copyFileSync('CHANGELOG.md','packages/ssh-vscode-extension/CHANGELOG.md'); execSync('npm version '+v+' --no-git-tag-version', {cwd:'packages/ssh-server'}); execSync('npm version '+v+' --no-git-tag-version', {cwd:'packages/ssh-vscode-extension'}); execSync('git add packages/ssh-server/package.json packages/ssh-vscode-extension/package.json packages/ssh-server/CHANGELOG.md packages/ssh-vscode-extension/CHANGELOG.md'); execSync('git commit --amend --no-edit'); execSync('git tag -f v'+v);\""
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
