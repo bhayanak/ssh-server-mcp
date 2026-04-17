@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-artifacts:
+    name: Build Release Artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      # Build npm package
+      - run: pnpm --filter simple-ssh-mcp-server run build
+      - name: Pack npm tarball
+        working-directory: packages/ssh-server
+        run: npm pack
+
+      # Build and package VS Code extension
+      - run: pnpm --filter ssh-mcp-vscode run build
+      - name: Package VSIX
+        working-directory: packages/ssh-vscode-extension
+        run: npx @vscode/vsce package --no-dependencies --allow-missing-repository --skip-license
+
+      # Upload artifacts
+      - name: Upload npm tarball
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-package
+          path: packages/ssh-server/*.tgz
+          retention-days: 90
+
+      - name: Upload VSIX
+        uses: actions/upload-artifact@v4
+        with:
+          name: vscode-extension
+          path: packages/ssh-vscode-extension/*.vsix
+          retention-days: 90
+
+      # Create GitHub Release with both artifacts
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            packages/ssh-server/*.tgz
+            packages/ssh-vscode-extension/*.vsix

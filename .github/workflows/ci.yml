@@ -24,7 +24,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter ssh-mcp-server run typecheck
+      - run: pnpm --filter simple-ssh-mcp-server run typecheck
 
   lint:
     name: Lint
@@ -39,7 +39,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter ssh-mcp-server run lint
+      - run: pnpm --filter simple-ssh-mcp-server run lint
 
   format:
     name: Format Check
@@ -54,7 +54,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter ssh-mcp-server run format
+      - run: pnpm --filter simple-ssh-mcp-server run format
 
   test:
     name: Test (Node ${{ matrix.node-version }})
@@ -72,7 +72,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter ssh-mcp-server run test:coverage
+      - run: pnpm --filter simple-ssh-mcp-server run test:coverage
 
   build:
     name: Build
@@ -88,7 +88,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter ssh-mcp-server run build
+      - run: pnpm --filter simple-ssh-mcp-server run build
       - run: pnpm --filter ssh-mcp-vscode run build
       - name: Verify build outputs
         run: |

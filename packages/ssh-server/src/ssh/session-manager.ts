@@ -1,5 +1,5 @@
 import { Client as SSH2Client } from 'ssh2';
-import { readFileSync, statSync } from 'fs';
+import { readFileSync, fstatSync, openSync, closeSync } from 'fs';
 import { randomUUID } from 'crypto';
 import type {
   SSHConnectionConfig,
@@ -43,14 +43,20 @@ export class SessionManager {
       (config as SSHConnectionConfig & { privateKeyPath?: string }).privateKeyPath
     ) {
       const keyPath = (config as SSHConnectionConfig & { privateKeyPath?: string }).privateKeyPath!;
-      const stat = statSync(keyPath);
-      const mode = stat.mode & 0o777;
-      if (mode & 0o077) {
-        process.stderr.write(
-          `[ssh-mcp] WARNING: Private key file ${keyPath} has permissive permissions (${mode.toString(8)}). Consider chmod 600.\n`,
-        );
+      // Open fd first, then stat+read on the same handle to avoid TOCTOU race (CodeQL js/file-system-race)
+      const fd = openSync(keyPath, 'r');
+      try {
+        const stat = fstatSync(fd);
+        const mode = stat.mode & 0o777;
+        if (mode & 0o077) {
+          process.stderr.write(
+            `[ssh-mcp] WARNING: Private key file ${keyPath} has permissive permissions (${mode.toString(8)}). Consider chmod 600.\n`,
+          );
+        }
+        privateKey = readFileSync(fd, 'utf-8');
+      } finally {
+        closeSync(fd);
       }
-      privateKey = readFileSync(keyPath, 'utf-8');
     }
 
     const client = new SSH2Client();
