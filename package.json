@@ -31,5 +31,10 @@
     "standard-version": "^9.5.0"
   },
   "keywords": ["mcp", "ssh", "sftp", "remote", "terminal", "ai", "copilot"],
-  "license": "MIT"
+  "license": "MIT",
+  "pnpm": {
+    "overrides": {
+      "path-to-regexp": ">=8.4.0"
+    }
+  }
 }
